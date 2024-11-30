@@ -9,11 +9,11 @@
             $quantidade = $_POST['quantidade'];
             $subtotal = $_POST['custo'];
 
-
-            $sql = "INSERT INTO vendas (data, comprador_id) VALUES (:DataAtual, :compradorID)";
+            $sql = "INSERT INTO itemvenda (produto_id, quantidade, subtotal) VALUES (:produtoID, :quantidade, :subtotal)";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':DataAtual', $DataAtual);
-            $stmt->bindParam('compradorID', $compradorID);
+            $stmt->bindParam(':produtoID', $produtoID);
+            $stmt->bindParam(':quantidade', $quantidade);
+            $stmt->bindParam(':subtotal', $subtotal);
             $stmt->execute();
 
             header('location: itemVenda.php');
@@ -66,7 +66,7 @@
         <input type="number" id="quantidade" name="quantidade" required> <br>
 
         <label for="custo"> Total R$ </label>
-        <input type="text" id="custo" name="custo" disabled> <br>
+        <input type="text" id="custo" name="custo" readonly> <br>
 
 
         <button type="submit"> Vender </button>
